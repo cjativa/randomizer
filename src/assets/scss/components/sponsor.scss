@@ -1,0 +1,13 @@
+.sponsor {
+    display: grid;
+    row-gap: 0.5em;
+
+    &__submit {
+        background-color: rgb(50, 191, 50);
+        color: white;
+    }
+
+    .error {
+        color: red;
+    }
+}

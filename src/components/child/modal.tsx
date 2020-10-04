@@ -12,8 +12,8 @@ interface ModalProps {
 
 const customStyles = {
     content: {
-        top: '7em',
-        bottom: '7em',
+        top: '3em',
+        bottom: '3em',
     }
 };
 
