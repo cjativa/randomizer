@@ -33,7 +33,7 @@ export class SponsorHandler {
     );
   }
 
-  public getSponsorsToRecipientsForOrg(
+  public static getSponsorsToRecipientsForOrg(
     organizationId: number
   ): Promise<ISponsorAndRecipient[]> {
     return new Promise((resolve, reject) =>
