@@ -1,6 +1,6 @@
 import { SponsorHandler } from "database_handlers./SponsorHandler";
 import { Router } from "express";
-import { ISponsorAndRecipient } from "../../../shared/interfaces/ISponsorAndRecipient";
+import { ISponsorAndRecipient } from "../../shared/interfaces/ISponsorAndRecipient";
 
 interface ISetSponsorForRecipient {
   organization_id: number;

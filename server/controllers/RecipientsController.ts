@@ -1,7 +1,5 @@
 import { RecipientsHandler } from "database_handlers./RecipientsHandler";
-import { SponsorHandler } from "database_handlers./SponsorHandler";
-import express, { Router } from "express";
-import { IRecipient } from "../../../shared/interfaces/IRecipient";
+import { Router } from "express";
 
 export class RecipientController {
   private readonly router: Router = Router();
