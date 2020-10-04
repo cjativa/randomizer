@@ -1,6 +1,12 @@
-html {
+html,
+body,
+#root,
+.App,
+.App > div {
     height: 100%;
     width: 100%;
+}
 
-    background-color: #f2e6ae;
+p {
+    margin: 0;
 }

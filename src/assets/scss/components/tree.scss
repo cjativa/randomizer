@@ -1,28 +1,13 @@
 .tree {
-    margin: 5em 0em;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    .tree-top {
-        fill: green;
-        position: relative;
+    background-color: rgb(226, 204, 155);
+    
+    &__bg {
+        height: 60%;
+        width: 85%;
     }
-
-    .tree-trunk {
-        height: 100px;
-        width: 80px;
-        background-color: #654321;
-    }
-}
-
-.circle {
-    height: 25px;
-    width: 25px;
-    background-color: #bbb;
-    border-radius: 50%;
-
-    position: absolute;
 }
