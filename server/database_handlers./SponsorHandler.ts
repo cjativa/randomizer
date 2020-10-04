@@ -1,5 +1,7 @@
+import { RECIPIENT_TABLE } from "database_scripts/RecipientDatabaseScripts";
 import { SPONSOR_TABLE } from "database_scripts/SponsorDatabaseScript";
 import { GiftRandomizerDatabase } from "db/GiftRandomizerDatabase";
+import { ISponsorAndRecipient } from "../../shared/interfaces/ISponsorAndRecipient";
 
 export class SponsorHandler {
   public static createSponsor(
@@ -8,7 +10,7 @@ export class SponsorHandler {
     email: string,
     phoneNumber: string,
     recipientId: number
-  ): Promise<any> {
+  ): Promise<void> {
     return new Promise((resolve, reject) =>
       GiftRandomizerDatabase.getInstance()
         .getConnection()
@@ -25,6 +27,33 @@ export class SponsorHandler {
               reject(err.message);
             } else {
               resolve();
+            }
+          }
+        )
+    );
+  }
+
+  public getSponsorsToRecipientsForOrg(
+    organizationId: number
+  ): Promise<ISponsorAndRecipient[]> {
+    return new Promise((resolve, reject) =>
+      GiftRandomizerDatabase.getInstance()
+        .getConnection()
+        .query(
+          `
+      SELECT s.*, s.id as sponsor_id, r.*, r.id as recipient_id
+      FROM ${SPONSOR_TABLE} s
+      JOIN ${RECIPIENT_TABLE} r
+      ON s.recipient_id = r.id
+      WHERE s.organization_id = ?
+    `,
+          [organizationId],
+          (err, results) => {
+            if (err) {
+              console.log(err.message);
+              reject(err.message);
+            } else {
+              resolve(results);
             }
           }
         )
