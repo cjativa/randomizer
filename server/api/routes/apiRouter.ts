@@ -1,7 +1,8 @@
+import { RecipientsHandler } from "database_handlers./RecipientsHandler";
 import express from "express";
-import recipientsController from "./RecipientsController";
+import { RecipientController } from "./RecipientsController";
 
 const apiRouter = express.Router();
-apiRouter.use("/recipients", recipientsController);
+apiRouter.use("/recipient", new RecipientController().getRouter());
 
 export default apiRouter;
