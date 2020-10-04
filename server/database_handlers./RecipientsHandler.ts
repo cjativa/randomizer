@@ -2,7 +2,7 @@ import { RECIPIENT_TABLE } from "database_scripts/RecipientDatabaseScripts";
 import { GiftRandomizerDatabase } from "db/GiftRandomizerDatabase";
 import { IRecipient } from "../../shared/interfaces/IRecipient";
 
-export class GiftsHandler {
+export class RecipientsHandler {
   public static getRecipientsEligibleForGiftsByOrgId(
     orgId: number
   ): Promise<IRecipient> {
