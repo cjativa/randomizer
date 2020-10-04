@@ -7,6 +7,7 @@ export const CREATE_RECIPIENT_TABLE: string = `
     address TEXT,
     age INTEGER,
     gender VARCHAR(6),
-    available BOOLEAN NOT NULL DEFAULT 0
+    available BOOLEAN NOT NULL DEFAULT 0,
+    organization_id INTEGER NOT NULL
   )
 `;

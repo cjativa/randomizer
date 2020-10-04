@@ -4,4 +4,5 @@ export interface IRecipient {
   age: number;
   gender: string;
   available: boolean;
+  organization_id: number;
 }
