@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Alan Jativa",
+        "age": 26,
+        "gender": "Male",
+        "residence": "New York", 
+        "available": true
+    },
+    {
+        "name": "Jeremy Jativa",
+        "age": 11,
+        "gender": "Male",
+        "residence": "New York", 
+        "available": true
+    },
+    {
+        "name": "Nicholas Jativa",
+        "age": 26,
+        "gender": "Male",
+        "residence": "New York", 
+        "available": true
+    },
+    {
+        "name": "Chris Jativa",
+        "age": 26,
+        "gender": "Male",
+        "residence": "New York", 
+        "available": true
+    }
+]

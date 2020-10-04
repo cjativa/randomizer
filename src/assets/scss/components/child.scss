@@ -1,0 +1,23 @@
+.child {
+    &__label {
+        font-weight: bold;
+    }
+
+    &__select {
+        margin-top: 2em;
+    }
+
+    &__buttons {
+        margin-top: 2em;
+        /* height: 5em; */
+
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        row-gap: 1em;
+    }
+
+    button {
+        padding: 15px 0;
+        border: none
+    }
+}
