@@ -15,3 +15,41 @@
         row-gap: 1em;
     }
 }
+
+.ReactModal__Content {
+    // Small devices (landscape phones, 576px and up)
+    @media (min-width: 576px) {
+    }
+
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) {
+    }
+
+    // Large devices (desktops, 992px and up)
+    @media (min-width: 992px) {
+        left: 50%;
+        right: 50%;
+    }
+
+    // Extra large devices (large desktops, 1200px and up)
+    @media (min-width: 1200px) {
+    }
+}
+
+.Modal {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: papayawhip;
+  }
+
+  .Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rebeccapurple;
+  }

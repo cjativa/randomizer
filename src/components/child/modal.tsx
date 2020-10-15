@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
 
 ReactModal.setAppElement('#root');
@@ -10,19 +9,13 @@ interface ModalProps {
     component?: JSX.Element
 };
 
-const customStyles = {
-    content: {
-        top: '3em',
-        bottom: '3em',
-    }
-};
-
 const Modal = (props: ModalProps) => {
     return (
         <ReactModal
             isOpen={props.shouldBeOpen}
             onRequestClose={props.onRequestClose}
-            style={customStyles}
+            className="Modal"
+            overlayClassName="Overlay"
         >
             {props.component}
         </ReactModal>
