@@ -1,4 +1,3 @@
-import { clear } from 'console';
 import React, { ReactHTML, useEffect, useState } from 'react';
 import Progress from 'react-circle-progress-bar';
 
