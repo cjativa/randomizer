@@ -5,6 +5,12 @@ body,
 .App > div {
     height: 100%;
     width: 100%;
+    background-color: rgb(226, 204, 155);
+}
+
+.App {
+    display: flex;
+    justify-content: center;
 }
 
 p {
