@@ -1,7 +1,8 @@
-import { RECIPIENT_TABLE } from "database_scripts/RecipientDatabaseScripts";
-import { SPONSOR_TABLE } from "database_scripts/SponsorDatabaseScript";
-import { GiftRandomizerDatabase } from "db/GiftRandomizerDatabase";
+import { RECIPIENT_TABLE } from "../database_scripts/RecipientDatabaseScripts";
+import { GiftRandomizerDatabase } from "../db/GiftRandomizerDatabase";
 import { ISponsorAndRecipient } from "../../shared/interfaces/ISponsorAndRecipient";
+import { SPONSOR_TABLE } from "../database_scripts/SponsorDatabaseScript";
+SPONSOR_TABLE;
 
 export class SponsorHandler {
   public static createSponsor(
@@ -33,7 +34,7 @@ export class SponsorHandler {
     );
   }
 
-  public getSponsorsToRecipientsForOrg(
+  public static getSponsorsToRecipientsForOrg(
     organizationId: number
   ): Promise<ISponsorAndRecipient[]> {
     return new Promise((resolve, reject) =>

@@ -1,4 +1,7 @@
-import { Connection, createConnection, createPool, Pool } from "mysql";
+import { CREATE_ORGANIZATION_TABLE } from "../database_scripts/OrganizationDatabaseScripts";
+import { CREATE_RECIPIENT_TABLE } from "../database_scripts/RecipientDatabaseScripts";
+import { createPool, Pool } from "mysql";
+import { CREATE_SPONSOR_TABLE } from "../database_scripts/SponsorDatabaseScript";
 
 export class GiftRandomizerDatabase {
   private static INSTANCE: GiftRandomizerDatabase;
@@ -24,5 +27,33 @@ export class GiftRandomizerDatabase {
 
   public getConnection(): Pool {
     return this.connection;
+  }
+
+  public async init(): Promise<void> {
+    await this.initializeTables();
+  }
+
+  private async initializeTables(): Promise<void> {
+    const connection = GiftRandomizerDatabase.getInstance().getConnection();
+    const createOrganizationTable = new Promise((resolve, reject) =>
+      connection.query(CREATE_ORGANIZATION_TABLE, (err) =>
+        err ? reject(err) : resolve()
+      )
+    );
+    const createSponsorTable = new Promise((resolve, reject) =>
+      connection.query(CREATE_SPONSOR_TABLE, (err) =>
+        err ? reject(err) : resolve()
+      )
+    );
+    const createRecipientTable = new Promise((resolve, reject) =>
+      connection.query(CREATE_RECIPIENT_TABLE, (err) =>
+        err ? reject(err) : resolve()
+      )
+    );
+    await Promise.all([
+      createOrganizationTable,
+      createSponsorTable,
+      createRecipientTable,
+    ]);
   }
 }

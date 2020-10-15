@@ -1,5 +1,5 @@
-import { RECIPIENT_TABLE } from "database_scripts/RecipientDatabaseScripts";
-import { GiftRandomizerDatabase } from "db/GiftRandomizerDatabase";
+import { RECIPIENT_TABLE } from "../database_scripts/RecipientDatabaseScripts";
+import { GiftRandomizerDatabase } from "../db/GiftRandomizerDatabase";
 import { IRecipient } from "../../shared/interfaces/IRecipient";
 
 export class RecipientsHandler {

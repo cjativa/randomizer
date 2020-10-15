@@ -1,7 +1,6 @@
-import { RecipientsHandler } from "database_handlers./RecipientsHandler";
-import { SponsorHandler } from "database_handlers./SponsorHandler";
-import express, { Router } from "express";
-import { IRecipient } from "../../../shared/interfaces/IRecipient";
+import { SponsorHandler } from "../database_handlers./SponsorHandler";
+import { Router } from "express";
+import { ISponsorAndRecipient } from "../../shared/interfaces/ISponsorAndRecipient";
 
 interface ISetSponsorForRecipient {
   organization_id: number;
@@ -11,7 +10,7 @@ interface ISetSponsorForRecipient {
   recipient_id: number;
 }
 
-export class RecipientController {
+export class SponsorController {
   private readonly router: Router = Router();
 
   constructor() {
@@ -23,13 +22,12 @@ export class RecipientController {
   }
 
   private setupRoutes(): void {
-    this.router.get<any, any, any, { org: number }>(
-      "/recipientsEligibleForGifts",
-      ({ query: { org } }, res) => {
-        RecipientsHandler.getRecipientsEligibleForGiftsByOrgId(
+    this.router.get<any, ISponsorAndRecipient[], any, { org: number }>(
+      "/getSponsorsToRecipientsForOrg",
+      ({ query: { org } }, res) =>
+        SponsorHandler.getSponsorsToRecipientsForOrg(
           org
-        ).then((recipient) => res.send(recipient));
-      }
+        ).then((sponsorsToRecipients) => res.send(sponsorsToRecipients))
     );
     this.router.post<any, any, ISetSponsorForRecipient, any>(
       "/setSponsorForRecipient",
@@ -44,15 +42,14 @@ export class RecipientController {
           },
         },
         res
-      ) => {
+      ) =>
         SponsorHandler.createSponsor(
           organization_id,
           sponsor_name,
           sponsor_email,
           sponsor_phone_number,
           recipient_id
-        ).then(() => res.sendStatus(200));
-      }
+        ).then(() => res.sendStatus(200))
     );
   }
 }

@@ -18,7 +18,7 @@
     "build-server": "tsc -p server/",
     "watch-server": "tsc -w -p server/",
     "run-dev-server": "nodemon dist/server/app.js",
-    "dev": "concurrently \"npm run watch-and-compile-dev-server\" \"npm run run-dev-server\""
+    "dev": "concurrently \"npm run watch-server\" \"npm run run-dev-server\""
   },
   "eslintConfig": {
     "extends": "react-app"
