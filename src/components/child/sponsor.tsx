@@ -17,23 +17,8 @@ const SponsorForm = (props: any) => {
 
         let progressInterval: any;
 
-        const submitSponship = async () => {
-
-            // Submit the payload
-            const response = await axios.post('/api/sponsor/setSponsorForRecipient', {
-                organization_id: 7,
-                recipient_id: 1,
-                sponsor_email: email,
-                sponsor_name: name,
-                sponsor_phone_number: phoneNumber
-            });
-
-            console.log(response);
-        };
 
         if (formSubmitted) {
-
-            submitSponship();
 
             // Increment the progress circle by a quarter every 1/4th of a second
             progressInterval = setInterval(() => {
@@ -86,7 +71,7 @@ const SponsorForm = (props: any) => {
     };
 
     /** Check the form for errors and submit if possible */
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
 
         const errors: { [key: string]: any } = {};
         let formHasErrors = false;
@@ -116,6 +101,18 @@ const SponsorForm = (props: any) => {
 
         // Otherwise, no errors so let's submit
         else {
+
+            // Submit the payload
+            const response = await axios.post('/api/sponsor/setSponsorForRecipient', {
+                organization_id: 7,
+                recipient_id: 1,
+                sponsor_email: email,
+                sponsor_name: name,
+                sponsor_phone_number: phoneNumber
+            });
+
+            console.log(response);
+
             setFormSubmitted(true);
         }
     };
