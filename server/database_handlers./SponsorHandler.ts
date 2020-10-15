@@ -12,13 +12,14 @@ export class SponsorHandler {
     phoneNumber: string,
     recipientId: number
   ): Promise<void> {
+    console.log("creating sponsor");
     return new Promise((resolve, reject) =>
       GiftRandomizerDatabase.getInstance()
         .getConnection()
         .query(
           `
       INSERT INTO ${SPONSOR_TABLE} (
-        name, email, phone_number, organiation_id, recipient_id
+        name, email, phone_number, organization_id, recipient_id
       ) VALUES (?, ?, ?, ?, ?)
       `,
           [name, email, phoneNumber, organizationId, recipientId],
