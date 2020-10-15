@@ -1,5 +1,4 @@
-import { OrganizationHandler } from "database_handlers./OrganizationHandler";
-import { resolveSoa } from "dns";
+import { OrganizationHandler } from "../database_handlers./OrganizationHandler";
 import { Router } from "express";
 
 interface ICreateOrganizationPayload {

@@ -1,13 +1,25 @@
-import express from 'express';
-import apiRouter from './api/routes/apiRouter';
-import Config from './util/config';
+import { GiftRandomizerDatabase } from "./db/GiftRandomizerDatabase";
+import express from "express";
+import apiRouter from "./api/routes/apiRouter";
+import Config from "./util/config";
 
-// Set up the server
-const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+export class AppServer {
+  private readonly app = express();
+  private readonly db: GiftRandomizerDatabase = GiftRandomizerDatabase.getInstance();
 
-// Register the API router
-app.use('/api', apiRouter);
+  constructor() {
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(express.json());
+    this.app.use("/api", apiRouter);
+    this.db
+      .init()
+      .then(() =>
+        this.app.listen(Config.port, () =>
+          console.log(`Server now listening on port ${Config.port}`)
+        )
+      )
+      .catch((e) => console.log(e));
+  }
+}
 
-app.listen(Config.port, () => console.log(`Server now listening on port ${Config.port}`));
+new AppServer();

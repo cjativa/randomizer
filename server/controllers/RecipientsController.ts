@@ -1,4 +1,4 @@
-import { RecipientsHandler } from "database_handlers./RecipientsHandler";
+import { RecipientsHandler } from "../database_handlers./RecipientsHandler";
 import { Router } from "express";
 
 export class RecipientController {

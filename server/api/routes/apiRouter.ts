@@ -1,6 +1,4 @@
-import { OrganizationController } from "controllers/OrganizationController";
-import { RecipientsHandler } from "database_handlers./RecipientsHandler";
-import { SponsorHandler } from "database_handlers./SponsorHandler";
+import { OrganizationController } from "../../controllers/OrganizationController";
 import express from "express";
 import { RecipientController } from "../../controllers/RecipientsController";
 import { SponsorController } from "../../controllers/SponsorController";

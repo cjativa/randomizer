@@ -1,5 +1,5 @@
-import { ORGANIZATION_TABLE } from "database_scripts/OrganizationDatabaseScripts";
-import { GiftRandomizerDatabase } from "db/GiftRandomizerDatabase";
+import { ORGANIZATION_TABLE } from "../database_scripts/OrganizationDatabaseScripts";
+import { GiftRandomizerDatabase } from "../db/GiftRandomizerDatabase";
 
 export class OrganizationHandler {
   public static createOrganization(
