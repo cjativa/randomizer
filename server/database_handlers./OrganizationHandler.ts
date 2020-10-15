@@ -14,7 +14,7 @@ export class OrganizationHandler {
           `
       INSERT INTO ${ORGANIZATION_TABLE} (
         name, email_address, password
-      ) ? VALUES (?, ?, ?)`,
+      ) VALUES (?, ?, ?)`,
           [organizationName, emailAddress, password],
           (err) => {
             if (err) {

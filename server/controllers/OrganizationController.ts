@@ -21,12 +21,13 @@ export class OrganizationController {
   private setupRoutes(): void {
     this.router.post<any, any, ICreateOrganizationPayload, any>(
       "/create",
-      ({ body: { organizationName, emailAddress, password } }, res) =>
+      ({ body: { organizationName, emailAddress, password } }, res) => {
         OrganizationHandler.createOrganization(
           organizationName,
           emailAddress,
           password
-        ).then(() => res.sendStatus(200))
+        ).then(() => res.sendStatus(200));
+      }
     );
   }
 }
