@@ -1,13 +1,50 @@
-import React, { ReactHTML, useState } from 'react';
+import { clear } from 'console';
+import React, { ReactHTML, useEffect, useState } from 'react';
+import Progress from 'react-circle-progress-bar';
 
-const SponsorForm = () => {
+const SponsorForm = (props: any) => {
 
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
 
     const [errors, setErrors] = useState<{ [key: string]: any }>({});
+    const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
 
+    const [submitProgress, setSubmitProgress] = useState(0);
+
+    useEffect(() => {
+
+        let progressInterval: any;
+
+        if (formSubmitted) {
+
+            // Increment the progress circle by a quarter every 1/4th of a second
+            progressInterval = setInterval(() => {
+                setSubmitProgress(submitProgress + 25);
+            }, 100);
+
+            // Once we've reached 100 percent, we can clear the interval and wrap up
+            if (submitProgress == 100) {
+                clearInterval(progressInterval);
+
+                const updateFormTimeout = setTimeout(() => {
+                    setFormSubmitted(false);
+                    clearTimeout(updateFormTimeout);
+                }, 1000);
+            }
+        }
+
+        if (formSubmitted == false && submitProgress > 0) {
+            setSubmitProgress(0);
+            props.setShowChildModal(false);
+        }
+
+        return () => clearInterval(progressInterval);
+
+    }, [formSubmitted, submitProgress]);
+
+    /** Update the UI with the correct input that's being typed into */
     const handleInput = (e: any) => {
 
         const { name, value } = e.target;
@@ -32,26 +69,39 @@ const SponsorForm = () => {
         }
     };
 
+    /** Check the form for errors and submit if possible */
     const handleSubmit = () => {
 
         const errors: { [key: string]: any } = {};
+        let formHasErrors = false;
 
         // Check if the name entered is valid
         if (name.trim().length < 3) {
             errors['name'] = 'Please enter a valid name.';
+            formHasErrors = true;
         }
 
         // Check if the email entered is valid
         if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email) == false) {
             errors['email'] = 'Please enter a valid email address.';
+            formHasErrors = true;
         }
 
         // Check if phone number is valid
         if (phoneNumber.replace(/\D/g, "").length != 10) {
             errors['phoneNumber'] = 'Please enter a valid phone number.';
+            formHasErrors = true;
         }
 
-        setErrors(errors);
+        // Let's update the UI with the error
+        if (formHasErrors) {
+            setErrors(errors);
+        }
+
+        // Otherwise, no errors so let's submit
+        else {
+            setFormSubmitted(true);
+        }
     };
 
     return (
@@ -74,7 +124,11 @@ const SponsorForm = () => {
                 <input type="email" value={email} name="email" onChange={handleInput} />
             </div>
 
-            <button className="sponsor__submit" onClick={handleSubmit}>Submit</button>
+            <button className="sponsor__submit" onClick={handleSubmit} disabled={formSubmitted}>Submit</button>
+
+            {/** Only display the progress circle when the form's been submitted */}
+            {formSubmitted &&
+                <Progress className="circle" progress={submitProgress} />}
         </div>
     )
 };

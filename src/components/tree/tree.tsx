@@ -8,23 +8,22 @@ import ChildInformation from '../child/child';
 const Tree = () => {
 
     const [selectedChild, setSelectedChild] = useState<any>(null);
+    const [showChildModal, setShowChildModal] = useState<boolean>(false);
 
     /** Handles a click on the tree by displaying the information for a random child */
     const handleTreeClick = (e: any) => {
         const randomChild = children[Math.floor(Math.random() * children.length)];
         setSelectedChild(randomChild);
+        setShowChildModal(true);
     };
 
     /** Handles when modal should be closed */
     const handleModalClose = () => {
         setSelectedChild(null);
+        setShowChildModal(false);
     };
 
-    useEffect(() => {
-
-
-
-    }, []);
+    /** Allows for closing the */
 
     return (
         <div className="tree" >
@@ -36,18 +35,17 @@ const Tree = () => {
             />
 
             {/** If a child's been selected, show their information */}
-            {selectedChild &&
-                <Modal
-                    shouldBeOpen={true}
-                    onRequestClose={handleModalClose}
-                    component={
-                        <ChildInformation
-                            child={selectedChild}
-                        />
-                    }
+            {selectedChild && <Modal
+                shouldBeOpen={showChildModal}
+                onRequestClose={handleModalClose}
+                component={
+                    <ChildInformation
+                        child={selectedChild}
+                        setShowChildModal={setShowChildModal}
+                    />
+                }
 
-                />
-            }
+            />}
 
         </div>
     );

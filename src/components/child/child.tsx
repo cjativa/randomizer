@@ -3,10 +3,16 @@ import SponsorForm from './sponsor';
 
 const ChildInformation = (props: any) => {
 
-    const { child } = props
+    const { child, setShowChildModal } = props
     const genderEmoji = (child.gender == 'Male') ? '👦' : '👧';
 
     const [willSponsor, setWillSponsor] = useState<boolean | null>(null);
+
+    /** Handles when the user decides not to sponsor the child in question */
+    const handleWillNotSponsor = () => {
+        setWillSponsor(false);
+        setShowChildModal(false);
+    };
 
     return (
         <div className="child">
@@ -29,7 +35,7 @@ const ChildInformation = (props: any) => {
                             <button onClick={() => setWillSponsor(true)}>
                                 Yes, I'll sponsor this child
                         </button>
-                            <button onClick={() => setWillSponsor(false)}>
+                            <button onClick={handleWillNotSponsor}>
                                 I'll pick again
                         </button>
                         </div>
@@ -38,7 +44,9 @@ const ChildInformation = (props: any) => {
 
                 {/** Display the sponsorship form if they choose to sponsor this child */}
                 {willSponsor == true &&
-                    <SponsorForm />
+                    <SponsorForm
+                        setShowChildModal={setShowChildModal}
+                    />
                 }
             </div>
 
